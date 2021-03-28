@@ -1,0 +1,113 @@
+:root {
+    --pale-red: #ffebe6;
+    --soft-red: lightcoral;
+}
+
+.upperParagraph {
+    margin-left: 80px;
+    font-size: 250%;
+    color: royalblue;
+}
+
+.section {
+    margin-left: 80px;
+    margin-top: 50px;
+    width: fit-content;
+}
+
+.centered-section {
+    display: flex; 
+    flex-direction: column;
+    align-items: center
+}
+.simple-list {
+    display: table;
+    border-spacing: 20px;
+    width: fit-content;
+}
+
+.phrase-list {
+    font-size: 125%;
+}
+
+.simple-list-item {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.phrase {
+    font-weight: 500;
+}
+
+.phrase-in-list {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.phrase-red {
+    color: #ca0a00;
+    background-color: #fff4f0;
+}
+
+.phrase-green {
+    color: forestgreen;
+    background-color: #ccffdb;
+}
+
+.button-row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    border-style: solid;
+    border-width: 2px;
+    padding: 10px 50px;
+    border-color: firebrick;
+    border-radius: 30px;
+}
+
+.button-row :not(:last-child, .button-row-label)  {
+    margin-right: 50px; 
+}
+
+.button-row-label {
+    margin-right: 80px;
+    font-weight: bold;
+    color: #444444;
+    font-size: 125%;
+}
+
+.simple-button-colored {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: tomato;
+    color: var(--pale-red);
+    font-weight: 500;
+    border-style: solid;
+    border-width: 2px;
+    border-color: darkolivegreen;
+    border-radius: 15px;
+}
+
+.simple-button {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #eeeeee;
+    color: #aaaaaa;
+    font-weight: 500;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #444444;
+    border-radius: 15px;
+}
+
+.simple-button:hover {
+    color: #666666;
+    background-color:#dddddd;
+}
+
