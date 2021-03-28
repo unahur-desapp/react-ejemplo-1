@@ -56,6 +56,11 @@
     background-color: #ccffdb;
 }
 
+.phrase-blue {
+    color: mediumblue;
+    background-color: lightcyan;
+}
+
 .button-row {
     display: flex;
     flex-direction: row;

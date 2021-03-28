@@ -14,6 +14,8 @@ export function Phrases() {
         fontSize: "150%", textAlign: "center"
     };
 
+    const blueButtonStyle = { marginBottom: "50px" };
+
     async function fetchPhrases() {
         const thePhrases = await getAllPhrases();
         setPhrases(thePhrases);
@@ -30,7 +32,11 @@ export function Phrases() {
 
     return (
         <div className="section centered-section">
+            <div>{`Estamos en color ${colorTheme}`}</div>
             <PhraseList phrases={phrases} colorTheme={colorTheme} />
+            <div className="simple-button" style={blueButtonStyle} onClick={() => setColorTheme("blue")}>
+                Cambiar a azul
+            </div>
             <PhraseColorSelector setColorTheme={setColorTheme} />
             <div style={specialButtonStyle} onClick={async () => { await addPhrase(); }}>
                 Agregar una frase
