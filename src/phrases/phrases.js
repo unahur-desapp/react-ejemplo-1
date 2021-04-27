@@ -3,7 +3,8 @@ import "../App.css";
 import { addFixedPhrase, getAllPhrases } from "../services/phrases"
 
 export function Phrases() {
-    const [phrases, setPhrases] = useState([]);
+    const [tvSeries, setTVSeries] = useState(null);
+    const [phrases, setPhrases] = useState(null);
     const [colorTheme, setColorTheme] = useState("green");
     const [boldCountMessage, setBoldCountMessage] = useState(false);
 
@@ -17,9 +18,11 @@ export function Phrases() {
 
     const blueButtonStyle = { marginBottom: "50px" };
 
-    async function fetchPhrases() {
-        const thePhrases = await getAllPhrases();
-        setPhrases(thePhrases);
+    async function fetchPhrases(tvSeries) {
+        setTimeout(async () => {
+            const thePhrases = await getAllPhrases(tvSeries);
+            setPhrases(thePhrases);
+        }, 1000);
     }
 
     async function addPhrase() {
@@ -28,11 +31,25 @@ export function Phrases() {
     }
 
     useEffect(() => {
-        fetchPhrases();
-    }, []);
+        fetchPhrases(tvSeries);
+    }, [tvSeries]);
 
-    return (
+    console.log("Estoy renderizando");
+
+    return phrases ? (
+    // return (
         <div className="section centered-section">
+            <div>{tvSeries}</div>
+            <div className="simple-button" onClick={() => {
+                setTVSeries("Game of Thrones")
+            }}>
+                Game of Thrones
+            </div>
+            <div className="simple-button" onClick={() => {
+                setTVSeries("Dark")
+            }}>
+                Dark
+            </div>
             <div>{`Estamos en color ${colorTheme}`}</div>
             <PhraseList phrases={phrases} colorTheme={colorTheme} />
             <PhraseCount phrases={phrases} bold={boldCountMessage}/>
@@ -50,7 +67,8 @@ export function Phrases() {
                 {boldCountMessage ? 'Sacar' : 'Poner'} negrita
             </div>
         </div>
-    );
+    )
+    : <div className="section centered-section">... cargando ...</div>;
 }
 
 function PhraseCount(props) {

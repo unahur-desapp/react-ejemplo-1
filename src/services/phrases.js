@@ -16,7 +16,13 @@ const currentPhrases = [...initialPhrases];
 
 const remainingPhrases = [...additionalPhrases];
 
-export async function getAllPhrases() {
+export async function getAllPhrases(tvSeries) {
+    if (tvSeries === "Dark") {
+        return Promise.resolve(["Todos van a morir", "ojo al piojo"]);
+    }
+    // esto no anda porque React no reacciona, le tengo que cambiar el objeto ...
+    // return Promise.resolve(currentPhrases);
+    // ... por lo tanto, lo que le devuelvo es siempre un clone nuevo
     return Promise.resolve([...currentPhrases]);
 }
 
