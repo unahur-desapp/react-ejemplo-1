@@ -3,12 +3,16 @@ import { Phrases } from "./phrases/phrases"
 
 function App() {
     return (
-        <div>
-            <p className="upperParagraph"> Esto es un título </p>
+        <>
+            <Titulo text="Esto es un titulazo"/>
             <hr/>
             <Phrases />
-        </div>
+        </>
     )
+}
+
+function Titulo(props) {
+    return <p className="upperParagraph"> { props.text } </p>
 }
 
 export default App;

@@ -27,7 +27,9 @@ export function Phrases() {
     }
 
     useEffect(() => {
-        fetchPhrases();
+        setTimeout(() => {
+            fetchPhrases();
+        }, 1000);
     }, []);
 
     return (
@@ -49,7 +51,7 @@ function PhraseList(props) {
     return <div className="simple-list phrase-list">{
         props.phrases.map((phrase, ix) => 
             <div className={`simple-list-item phrase phrase-in-list phrase-${props.colorTheme}`} key={String(ix)}>
-                {phrase}
+                {phrase.length > 25 ? `${phrase.substr(0,25)} ...` : phrase }
             </div>
         )
     }</div>;
