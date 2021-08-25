@@ -26,3 +26,10 @@ export async function addFixedPhrase() {
         currentPhrases.push(phraseToAppend);
     }
 }
+
+export const currentYear = 2021;
+
+const universalResponse = { a: 3, b: 4 };
+
+export default universalResponse; 
+

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
-import { addFixedPhrase, getAllPhrases } from "../services/phrases"
+import pepito, { addFixedPhrase, getAllPhrases, currentYear } from "../services/phrases"
 
 export function Phrases() {
     const [phrases, setPhrases] = useState([]);
@@ -27,24 +27,49 @@ export function Phrases() {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            fetchPhrases();
-        }, 1000);
+        const funcionAsincronicaInterna = async () => {
+            const thePhrases = await getAllPhrases();
+            setPhrases(thePhrases);
+        }
+        funcionAsincronicaInterna();
     }, []);
 
-    return (
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         fetchPhrases();
+    //     }, 1000);
+    // }, []);
+
+    function phrasesCount() { 
+        return <PhrasesCount phrases={phrases} />
+    }
+
+    return ( <>
+        <div>
+            {pepito.a} {pepito.b}
+        </div>
+        <div>
+            {currentYear}
+        </div>
         <div className="section centered-section">
+            { phrasesCount() }
             <div>{`Estamos en color ${colorTheme}`}</div>
             <PhraseList phrases={phrases} colorTheme={colorTheme} />
             <div className="simple-button" style={blueButtonStyle} onClick={() => setColorTheme("blue")}>
                 Cambiar a azul
             </div>
+            { phrasesCount() }
             <PhraseColorSelector setColorTheme={setColorTheme} />
             <div style={specialButtonStyle} onClick={async () => { await addPhrase(); }}>
                 Agregar una frase
             </div>
         </div>
+    </>
     );
+}
+
+function PhrasesCount(props) {
+    return <div style={{ marginBottom: "10px", fontSize: "120%" }}>Actualmente hay {props.phrases.length} frases listadas</div>
 }
 
 function PhraseList(props) {
@@ -62,6 +87,7 @@ function PhraseColorSelector(props) {
         <div className="button-row-label">Color base</div>
         <PhraseColorOption color="red" label="Rojo" setColorTheme={props.setColorTheme}/>
         <PhraseColorOption color="green" label="Verde" setColorTheme={props.setColorTheme}/>
+        <PhraseColorOption color="blue" label="Azul" setColorTheme={props.setColorTheme} />
     </div>
 }
 
